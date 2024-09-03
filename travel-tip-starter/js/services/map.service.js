@@ -1,3 +1,4 @@
+import { keys } from "./api-keys.service.js"
 
 export const mapService = {
     initMap,
@@ -9,7 +10,7 @@ export const mapService = {
 }
 
 // TODO: Enter your API Key
-const API_KEY = 'AIzaSyDhqf_PLZAO6Fxh4kMX6-YMy-LwII6nGAE'
+const API_KEY = keys.google
 var gMap
 var gMarker
 
