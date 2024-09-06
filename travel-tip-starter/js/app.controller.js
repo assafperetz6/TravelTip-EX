@@ -249,6 +249,7 @@ function onSetSortBy() {
     //     [prop] : (isDesc)? -1 : 1
     // }
 
+    console.log(sortBy)
     locService.setSortBy(sortBy)
     loadAndRenderLocs()
 }
