@@ -4,6 +4,8 @@ import { mapService } from './services/map.service.js'
 
 window.onload = onInit
 
+let gUserPos = {}
+
 // To make things easier in this project structure 
 // functions that are called from DOM are defined on a global app object
 window.app = {
@@ -34,13 +36,18 @@ function onInit() {
 
 function renderLocs(locs) {
     const selectedLocId = getLocIdFromQueryParams()
-
     var strHTML = locs.map(loc => {
+        const latlng = {
+            lat: loc.geo.lat,
+            lng: loc.geo.lng,
+        }
+        let distance = gUserPos ? utilService.getDistance(gUserPos, latlng, 'K') : ''
         const className = (loc.id === selectedLocId) ? 'active' : ''
         return `
         <li class="loc ${className}" data-id="${loc.id}">
             <h4>  
                 <span>${loc.name}</span>
+                <span class="hidden distance">Distance: ${distance}</span>
                 <span title="${loc.rate} stars">${'★'.repeat(loc.rate)}</span>
             </h4>
             <p class="muted">
@@ -58,6 +65,10 @@ function renderLocs(locs) {
 
     const elLocList = document.querySelector('.loc-list')
     elLocList.innerHTML = strHTML || 'No locs to show'
+    if(gUserPos.lat){
+        const elDistances = document.querySelectorAll('.distance')
+        elDistances.forEach(distance => distance.classList.remove('hidden'))
+    } 
 
     renderLocStats()
 
@@ -128,6 +139,7 @@ function loadAndRenderLocs() {
 function onPanToUserPos() {
     mapService.getUserPosition()
         .then(latLng => {
+            gUserPos = structuredClone(latLng)
             mapService.panTo({ ...latLng, zoom: 15 })
             unDisplayLoc()
             loadAndRenderLocs()
