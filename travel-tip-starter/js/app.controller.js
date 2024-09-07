@@ -185,7 +185,7 @@ function displayLoc(loc) {
         lat: loc.geo.lat,
         lng: loc.geo.lng,
     }
-    let distance = utilService.getDistance(gUserPos, latlng, 'K') || null
+    const distance = utilService.getDistance(gUserPos, latlng, 'K') || null
     const distanceStr = distance ? `Distance: ${distance} KM.` : ''
 
     document.querySelector('.loc.active')?.classList?.remove('active')
@@ -283,6 +283,9 @@ function onSetFilterBy({ txt, minRate }) {
 function renderLocStats() {
     locService.getLocCountByRateMap().then(stats => {
         handleStats(stats, 'loc-stats-rate')
+    })
+    locService.getLocCountByUpdateMap().then(stats => {
+        handleStats(stats, 'loc-stats-update')
     })
 }
 

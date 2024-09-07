@@ -66,8 +66,22 @@ function elapsedTime(pastMs) {
     if (hoursPast < 24)  return `today` 
 
     return `${Math.floor(hoursPast / 24)} days ago`
-
 }
+
+// function whenUpdated(pastMs) {
+//     const now = new Date()
+//     const secondsPast = Math.round((now - pastMs) / 1000)
+
+//     if (secondsPast < 60 * 5) return `just now` 
+    
+//     const minutesPast = Math.floor(secondsPast / 60)
+//     if (minutesPast < 60) return `last hour` 
+
+//     const hoursPast = Math.floor(minutesPast / 60)
+//     if (hoursPast < 24)  return `today` 
+
+//     return `${Math.floor(hoursPast / 24)} days ago`
+// }
 
 function updateQueryParams(queryParamsObj) {
     var queryParams = `?`
