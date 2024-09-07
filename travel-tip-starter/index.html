@@ -72,6 +72,20 @@
                 </section>
             </section>
         </div>
+
+                <dialog class="modal">
+                    <form onsubmit="app.onSave(event)">
+                        <input class="full" name="name" type="text" placeholder="Enter location name">
+                        <section class="full rating-container">
+                            <input oninput="app.onUpdateRate()" name="rate" type="range" min="1" max="5">
+                            <span class="rate"></span>
+                        </section>
+                        <input name="id" class="hidden"> 
+                        <button type="button" onclick="app.closeModal()">Cancel</button>
+                        <button>Save</button>
+                    </form>
+                </dialog>
+
     </main>
     <pre class="debug"></pre>
     <div class="user-msg"></div>

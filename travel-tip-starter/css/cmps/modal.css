@@ -1,0 +1,39 @@
+.modal{
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(237, 237, 237);
+}
+
+.modal form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+
+    width: 300px;
+}
+
+.modal input[type=range]{
+    width: 90%;
+}
+
+.modal input[type=text]{
+    padding: 5px;
+}
+
+
+.rating-container{
+    display: flex;
+    justify-content: space-between;
+
+    line-height: 1em;
+}
+
+.full{
+    grid-column: 1 / -1;
+}
+
+form button{
+    margin: 0;
+}
